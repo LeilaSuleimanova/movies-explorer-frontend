@@ -77,7 +77,7 @@
   padding-left: 0;
   margin: 0 auto;
   margin-top: auto;
-  padding-bottom: 92px;
+  padding-bottom: 49px;
 }
 
 .header__icon-profile {
@@ -147,7 +147,7 @@
   transition: opacity 0.3s;
   width: 32px;
   height: 32px;
-  background-image: url(../../images/exit.svg);
+  background-image: url(../../images/burger-exit.svg);
   background-repeat: no-repeat;
   background-size: 32px 32px;
   background-position: center;
