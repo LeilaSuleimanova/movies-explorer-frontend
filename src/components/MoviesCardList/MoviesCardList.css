@@ -38,6 +38,12 @@
 
 @media screen and (max-width: 1279px) {
   .movies {
+    width: calc(708px + (1140 - 708) * (100vw - 768px) / (1279 - 768));
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movies {
     gap: 61px;
   }
 
@@ -48,7 +54,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 320px) {
   .movies {
     padding-bottom: 79px;
   }

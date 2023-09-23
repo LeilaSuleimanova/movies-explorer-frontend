@@ -80,7 +80,7 @@
   line-height: 1.4;
 }
 
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 768px) {
   .search {
     width: 708px;
     padding: 70px 0 108px;
@@ -99,7 +99,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 320px) {
   .search {
     width: calc(300px + (708 - 300) * (100vw - 320px) / (767 - 320));
     padding: 75px 0 44px;

@@ -111,7 +111,7 @@
   text-align: center;
 }
 
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 768px) {
   .movies__card {
     gap: 25px;
   }
@@ -129,7 +129,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 320px) {
   .movies__img {
     height: 168px;
   }

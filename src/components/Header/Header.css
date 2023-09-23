@@ -175,14 +175,6 @@
     padding: 18px calc(30px + (70 - 30) * (100vw - 768px) / (1279 - 768));
   }
 
-  .header__nav-desktop {
-    display: none;
-  }
-
-  .header__burger {
-    display: flex;
-  }
-
   .header__link_type_auth {
     font-size: 18px;
     font-weight: 500;
@@ -203,6 +195,14 @@
 @media screen and (max-width: 767px) {
   .header__container {
     padding: 18px calc(14px + (30 - 14) * (100vw - 320px) / (767 - 320));
+  }
+
+  .header__burger {
+    display: flex;
+  }
+
+  .header__nav-desktop {
+    display: none;
   }
 
   .header__list {
