@@ -16,6 +16,7 @@
   row-gap: 57px;
   column-gap: 30px;
   padding: 80px 0 0;
+  width: -webkit-fill-available;
 }
 
 .movies__button {
@@ -34,12 +35,6 @@
 .movies__button:hover {
   cursor: pointer;
   opacity: 0.8;
-}
-
-@media screen and (max-width: 1279px) {
-  .movies {
-    width: calc(708px + (1140 - 708) * (100vw - 768px) / (1279 - 768));
-  }
 }
 
 @media screen and (max-width: 768px) {

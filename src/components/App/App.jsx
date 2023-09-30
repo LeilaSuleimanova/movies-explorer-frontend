@@ -18,64 +18,62 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <body className="body">
-      <div className="page">
-        <Routes>
-          <Route path="/" element={<MainPage isLoggedIn={isLoggedIn} />} />
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRouteElementForUnauthorizedUser
-                isLoggedIn={isLoggedIn}
-                element={<MoviesPage isLoggedIn={isLoggedIn} />}
-              />
-            }
-          />
-          <Route
-            path="/saved-movies"
-            element={
-              <ProtectedRouteElementForUnauthorizedUser
-                isLoggedIn={isLoggedIn}
-                element={<SavedMoviesPage isLoggedIn={isLoggedIn} />}
-              />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRouteElementForUnauthorizedUser
-                isLoggedIn={isLoggedIn}
-                element={
-                  <ProfilePage
-                    isLoggedIn={isLoggedIn}
-                    setIsLoggedIn={setIsLoggedIn}
-                  />
-                }
-              />
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <ProtectedRouteElementForAuthorizedUser
-                isLoggedIn={isLoggedIn}
-                element={<RegisterPage />}
-              />
-            }
-          />
-          <Route
-            path="/signin"
-            element={
-              <ProtectedRouteElementForAuthorizedUser
-                isLoggedIn={isLoggedIn}
-                element={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
-              />
-            }
-          />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </div>
-    </body>
+    <div className="page">
+      <Routes>
+        <Route path="/" element={<MainPage isLoggedIn={isLoggedIn} />} />
+        <Route
+          path="/movies"
+          element={
+            <ProtectedRouteElementForUnauthorizedUser
+              isLoggedIn={isLoggedIn}
+              element={<MoviesPage isLoggedIn={isLoggedIn} />}
+            />
+          }
+        />
+        <Route
+          path="/saved-movies"
+          element={
+            <ProtectedRouteElementForUnauthorizedUser
+              isLoggedIn={isLoggedIn}
+              element={<SavedMoviesPage isLoggedIn={isLoggedIn} />}
+            />
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRouteElementForUnauthorizedUser
+              isLoggedIn={isLoggedIn}
+              element={
+                <ProfilePage
+                  isLoggedIn={isLoggedIn}
+                  setIsLoggedIn={setIsLoggedIn}
+                />
+              }
+            />
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <ProtectedRouteElementForAuthorizedUser
+              isLoggedIn={isLoggedIn}
+              element={<RegisterPage />}
+            />
+          }
+        />
+        <Route
+          path="/signin"
+          element={
+            <ProtectedRouteElementForAuthorizedUser
+              isLoggedIn={isLoggedIn}
+              element={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
+            />
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </div>
   );
 }
 
