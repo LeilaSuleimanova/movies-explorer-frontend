@@ -1,6 +1,6 @@
 # Проект: movies-explorer-frontend
 
-[Pull request]()
+[Pull request](https://github.com/LeilaSuleimanova/movies-explorer-frontend/pull/2)
 
 [Deploy](https://leila.nomoredomainsicu.ru)
 
