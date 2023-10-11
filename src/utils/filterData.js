@@ -8,6 +8,7 @@ const filterData = (nameRu, nameEN, duration, isChecked, searchQuery) => {
 
 export const validateSearch = (isSaveInLocalStorage, searchQuery, searchQueryName, setNameError, setMovies, movies, isChecked, moviesName, errorMovies) => {
     isSaveInLocalStorage && localStorage.setItem(searchQueryName, searchQuery);
+
     if (searchQuery.trim() === '') {
         setNameError('Нужно ввести ключевое слово');
         setMovies(errorMovies);
