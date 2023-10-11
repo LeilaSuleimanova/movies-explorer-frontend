@@ -22,3 +22,5 @@ export const ROW_OF_CARDS_FOR_TABLET = 2;
 export const MOBILE = 480;
 export const AMOUNT_CARDS_FOR_MOBILE = 5;
 export const ROW_OF_CARDS_FOR_MOBILE = 2;
+
+export const LENGTH_OF_SHORTFILMS = 40;
