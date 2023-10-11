@@ -20,6 +20,7 @@ import {
   UNAUTHORIZED_TEXT,
 } from "../../utils/errors";
 import { ProtectedRouteElementForUnauthorizedUser } from "../Routes/Routes";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 const App = () => {
   const navigate = useNavigate();
@@ -31,8 +32,10 @@ const App = () => {
   const [isLoadingMovies, setIsLoadingMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingSavedMovies, setIsLoadingSavedMovies] = useState(false);
-  // const [isStatusPopupOpen, setIsStatusPopupOpen] = useState(false);
+  const [isStatusPopupOpen, setIsStatusPopupOpen] = useState(false);
+  const [isStatus, setIsStatus] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [textPopup, setTextPopup] = useState("");
   const [status, setStatus] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [movies, setMovies] = useState([]);
@@ -80,11 +83,11 @@ const App = () => {
     checkUser();
   }, [isLoggedIn]);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsStatusPopupOpen(false);
-  //   }, 2000);
-  // }, [isStatusPopupOpen]);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsStatusPopupOpen(false);
+    }, 2000);
+  }, [isStatusPopupOpen]);
 
   const handleLogin = (email, password) => {
     setIsLoading(true);
@@ -95,7 +98,9 @@ const App = () => {
         localStorage.setItem("isLoggedIn", JSON.stringify(true));
         navigate("/movies");
         setIsLoading(false);
-        // setIsStatusPopupOpen(true);
+        setIsStatusPopupOpen(true);
+        setIsStatus(true);
+        setTextPopup("Успешный вход в аккаунт. Добро пожаловать!");
       })
       .catch((err) => {
         setIsLoading(false);
@@ -112,12 +117,15 @@ const App = () => {
 
   const handleRegister = (name, email, password) => {
     setIsLoading(true);
+    setIsStatus(true);
     mainApi
       .register(name, email, password)
       .then(() => {
         handleLogin(email, password);
         setIsLoading(false);
-        // setIsStatusPopupOpen(true);
+        setIsStatusPopupOpen(true);
+        setIsStatus(true);
+        setTextPopup("Регистрация прошла успешно. Добро пожаловать!");
       })
       .catch((err) => {
         setIsLoading(false);
@@ -140,7 +148,9 @@ const App = () => {
         setCurrentUser(userInfo);
         setIsLoading(false);
         setIsEdit(false);
-        // setIsStatusPopupOpen(true);
+        setIsStatusPopupOpen(true);
+        setIsStatus(true);
+        setTextPopup("Данные успешно сохранены!");
       })
       .catch((err) => {
         setIsLoading(false);
@@ -231,112 +241,120 @@ const App = () => {
       });
   };
 
-  // const closeStatusPopup = () => {
-  //   setIsStatusPopupOpen(false);
-  // };
+  const closeStatusPopup = () => {
+    setIsStatusPopupOpen(false);
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
-        <Routes>
-          <Route path="/" element={<MainPage isLoggedIn={isLoggedIn} />} />
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRouteElementForUnauthorizedUser
-                isLoggedIn={isLoggedIn}
-                element={
-                  <MoviesPage
-                    isLoggedIn={isLoggedIn}
-                    movies={movies}
-                    isSearchMovies={isSearchMovies}
-                    filteredMovies={filteredMovies}
-                    setFilteredMovies={setFilteredMovies}
-                    savedMovies={savedMovies}
-                    setIsSearchMovies={setIsSearchMovies}
-                    handleCreateMovie={handleCreateMovie}
-                    handleDeleteMovie={handleDeleteMovie}
-                    isLoading={isLoading}
-                    isLoadingMovies={isLoadingMovies}
-                  />
-                }
-              />
-            }
-          />
-          <Route
-            path="/saved-movies"
-            element={
-              <ProtectedRouteElementForUnauthorizedUser
-                isLoggedIn={isLoggedIn}
-                element={
-                  <SavedMoviesPage
-                    isLoggedIn={isLoggedIn}
-                    filteredSavedMovies={filteredSavedMovies}
-                    savedMovies={savedMovies}
-                    setFilteredSavedMovies={setFilteredSavedMovies}
-                    handleDeleteMovie={handleDeleteMovie}
-                    isSearchSavedMovies={isSearchSavedMovies}
-                    setIsSearchSavedMovies={setIsSearchSavedMovies}
-                    isLoadingSavedMovies={isLoadingSavedMovies}
-                    setIsLoadingSavedMovies={setIsLoadingSavedMovies}
-                    isLoadingMovies={isLoadingMovies}
-                  />
-                }
-              />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRouteElementForUnauthorizedUser
-                isLoggedIn={isLoggedIn}
-                element={
-                  <ProfilePage
-                    isLoggedIn={isLoggedIn}
-                    handleSignOut={handleSignOut}
+      <div className="body">
+        <div className="page">
+          <Routes>
+            <Route path="/" element={<MainPage isLoggedIn={isLoggedIn} />} />
+            <Route
+              path="/movies"
+              element={
+                <ProtectedRouteElementForUnauthorizedUser
+                  isLoggedIn={isLoggedIn}
+                  element={
+                    <MoviesPage
+                      isLoggedIn={isLoggedIn}
+                      movies={movies}
+                      isSearchMovies={isSearchMovies}
+                      filteredMovies={filteredMovies}
+                      setFilteredMovies={setFilteredMovies}
+                      savedMovies={savedMovies}
+                      setIsSearchMovies={setIsSearchMovies}
+                      handleCreateMovie={handleCreateMovie}
+                      handleDeleteMovie={handleDeleteMovie}
+                      isLoading={isLoading}
+                      isLoadingMovies={isLoadingMovies}
+                    />
+                  }
+                />
+              }
+            />
+            <Route
+              path="/saved-movies"
+              element={
+                <ProtectedRouteElementForUnauthorizedUser
+                  isLoggedIn={isLoggedIn}
+                  element={
+                    <SavedMoviesPage
+                      isLoggedIn={isLoggedIn}
+                      filteredSavedMovies={filteredSavedMovies}
+                      savedMovies={savedMovies}
+                      setFilteredSavedMovies={setFilteredSavedMovies}
+                      handleDeleteMovie={handleDeleteMovie}
+                      isSearchSavedMovies={isSearchSavedMovies}
+                      setIsSearchSavedMovies={setIsSearchSavedMovies}
+                      isLoadingSavedMovies={isLoadingSavedMovies}
+                      setIsLoadingSavedMovies={setIsLoadingSavedMovies}
+                      isLoadingMovies={isLoadingMovies}
+                    />
+                  }
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRouteElementForUnauthorizedUser
+                  isLoggedIn={isLoggedIn}
+                  element={
+                    <ProfilePage
+                      isLoggedIn={isLoggedIn}
+                      handleSignOut={handleSignOut}
+                      status={status}
+                      setStatus={setStatus}
+                      isLoading={isLoading}
+                      handleUpdateUser={handleUpdateUser}
+                      isEdit={isEdit}
+                      setIsEdit={setIsEdit}
+                    />
+                  }
+                />
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                isLoggedIn && location.pathname === "/signup" ? (
+                  navigate("/movies")
+                ) : (
+                  <RegisterPage
+                    handleRegister={handleRegister}
                     status={status}
                     setStatus={setStatus}
                     isLoading={isLoading}
-                    handleUpdateUser={handleUpdateUser}
-                    isEdit={isEdit}
-                    setIsEdit={setIsEdit}
                   />
-                }
-              />
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              isLoggedIn && location.pathname === "/signup" ? (
-                navigate("/movies")
-              ) : (
-                <RegisterPage
-                  handleRegister={handleRegister}
-                  status={status}
-                  setStatus={setStatus}
-                  isLoading={isLoading}
-                />
-              )
-            }
-          />
-          <Route
-            path="/signin"
-            element={
-              isLoggedIn && location.pathname === "/signin" ? (
-                navigate("/movies")
-              ) : (
-                <LoginPage
-                  handleLogin={handleLogin}
-                  status={status}
-                  setStatus={setStatus}
-                  isLoading={isLoading}
-                />
-              )
-            }
-          />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+                )
+              }
+            />
+            <Route
+              path="/signin"
+              element={
+                isLoggedIn && location.pathname === "/signin" ? (
+                  navigate("/movies")
+                ) : (
+                  <LoginPage
+                    handleLogin={handleLogin}
+                    status={status}
+                    setStatus={setStatus}
+                    isLoading={isLoading}
+                  />
+                )
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </div>
+        <InfoTooltip
+          isOpen={isStatusPopupOpen}
+          onClose={closeStatusPopup}
+          isStatus={isStatus}
+          status={textPopup}
+        />
       </div>
     </CurrentUserContext.Provider>
   );
