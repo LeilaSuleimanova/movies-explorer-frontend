@@ -22,11 +22,11 @@ const Profile = ({
       setStatus("");
       setIsEdit(false);
     };
-  }, []);
+  }, [setStatus, setIsEdit]);
 
   const initialValues = {
-    name: currentUser.name,
-    email: currentUser.email,
+    name: currentUser.name || "",
+    email: currentUser.email || "",
   };
 
   const validationRules = {
@@ -58,10 +58,23 @@ const Profile = ({
     ],
   };
 
-  const { values, handleChange, errors } = useFormWithValidation(
+  const { values, handleChange, errors, resetForm } = useFormWithValidation(
     initialValues,
     validationRules
   );
+
+  useEffect(() => {
+    if (currentUser) {
+      resetForm(
+        {
+          name: currentUser.name,
+          email: currentUser.email,
+        },
+        {},
+        false
+      );
+    }
+  }, [currentUser, resetForm]);
 
   const handleSubmitEdit = (e) => {
     e.preventDefault();
@@ -76,7 +89,9 @@ const Profile = ({
   return (
     <main>
       <section className="profile">
-        <h1 className="profile__welcome">{`Привет, ${currentUser.name}!`}</h1>
+        <h1 className="profile__welcome">{`Привет, ${
+          currentUser.name || "Пользователь"
+        }!`}</h1>
         <Form
           className={`profile__form ${isEdit ? "profile__form_type_save" : ""}`}
           name="profile"
@@ -95,7 +110,7 @@ const Profile = ({
               name="name"
               placeholder="Имя"
               label="Имя"
-              value={values.name}
+              value={values.name || ""}
               disabled={!isEdit}
               onChange={(e) => handleChange(e)}
               min="2"
@@ -110,7 +125,7 @@ const Profile = ({
               name="email"
               placeholder="E-mail"
               label="E-mail"
-              value={values.email}
+              value={values.email || ""}
               disabled={!isEdit}
               onChange={(e) => handleChange(e)}
             />

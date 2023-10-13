@@ -1,11 +1,14 @@
+import { LENGTH_OF_SHORTFILMS } from './constants';
+
 const filterData = (nameRu, nameEN, duration, isChecked, searchQuery) => {
     return (nameRu.toLowerCase().includes(searchQuery.trim().toLowerCase())
         || nameEN.toLowerCase().includes(searchQuery.trim().toLowerCase()))
-        && (isChecked ? duration <= 40 : duration);
+        && (isChecked ? duration <= LENGTH_OF_SHORTFILMS : duration);
 };
 
 export const validateSearch = (isSaveInLocalStorage, searchQuery, searchQueryName, setNameError, setMovies, movies, isChecked, moviesName, errorMovies) => {
     isSaveInLocalStorage && localStorage.setItem(searchQueryName, searchQuery);
+
     if (searchQuery.trim() === '') {
         setNameError('Нужно ввести ключевое слово');
         setMovies(errorMovies);

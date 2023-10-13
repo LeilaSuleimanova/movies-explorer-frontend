@@ -37,6 +37,20 @@ const Movies = ({
   const [nameError, setNameError] = useState("");
   const isSaveInLocalStorage = true;
 
+  // useEffect(() => {
+  //   localStorage.setItem(
+  //     "searchQueryFilteredMovies",
+  //     searchQueryFilteredMovies
+  //   );
+  // }, [searchQueryFilteredMovies]);
+
+  // useEffect(() => {
+  //   localStorage.setItem(
+  //     "isShortFilmFilteredMovies",
+  //     JSON.stringify(!isCheckedFilteredMovies)
+  //   );
+  // }, [isCheckedFilteredMovies]);
+
   const handleSubmitSearchFilteredMovies = (e) => {
     e.preventDefault();
     setNameError("");

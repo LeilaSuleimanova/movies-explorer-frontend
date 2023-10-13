@@ -5,13 +5,13 @@ export const HEADERS = {
 
 export const BASE_URL_MOVIES_API = 'https://api.nomoreparties.co';
 
-export const BASE_URL = 'https://api.leila.nomoredomainsicu.ru';
-// export const BASE_URL = 'http://localhost:3000';
+// export const BASE_URL = 'https://api.leila.nomoredomainsicu.ru';
+export const BASE_URL = 'http://localhost:3000';
 
 export const AMOUNT_CARDS_FOR_SMALL_SCREEN = 5;
 export const AMOUNT_CARDS_FOR_LARGE_SCREEN = 4;
 
-export const DESKTOP = 1280;
+export const DESKTOP = 1140;
 export const AMOUNT_CARDS_FOR_DESKTOP = 12;
 export const ROW_OF_CARDS_FOR_DESKTOP = 3;
 
@@ -22,3 +22,5 @@ export const ROW_OF_CARDS_FOR_TABLET = 2;
 export const MOBILE = 480;
 export const AMOUNT_CARDS_FOR_MOBILE = 5;
 export const ROW_OF_CARDS_FOR_MOBILE = 2;
+
+export const LENGTH_OF_SHORTFILMS = 40;

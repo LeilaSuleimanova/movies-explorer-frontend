@@ -1,7 +1,43 @@
-# Проект: movies-explorer-frontend
+# Проект Movies
 
-[Pull request](https://github.com/LeilaSuleimanova/movies-explorer-frontend/pull/2)
+Веб-сайт портфолио, после регистрации пользователи могут искать фильмы и добавлять их в избранное в личном кабинете.
 
-[Deploy](https://leila.nomoredomainsicu.ru)
+Ссылка на [макет](https://disk.yandex.ru/d/xSG5xyCjEEbk0g).
 
-Макет - [Light 4](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=1-2798&mode=dev)
+---
+
+Статус проекта: done
+
+---
+
+Запрос фильмов стороннее API `https://api.nomoreparties.co/beatfilm-movies`. Остальные запросы работают через [API backend](https://github.com/LeilaSuleimanova/movies-explorer-api).
+
+Реализовано:
+
+- Авторизация и регистрация пользователей.
+
+- Редактирование профиля.
+
+- Поиск фильмов.
+
+- Сохранение фильмов в избранное в личном кабинете.
+
+При создании веб-сайта применены технологии:
+
+- HTML;
+- CSS;
+- JavaScript;
+- React;
+- Методология БЭМ;
+- Webpack;
+- Postman.
+
+Инструкция по развертыванию:
+
+1. Склонируйте репозиторий локально: `git clone https://github.com/LeilaSuleimanova/movies-explorer-frontend.git`
+
+2. Установите Node.js с официального сайта https://nodejs.org/
+
+3. Установите модули npm: `npm install`
+
+4. Запустите проект: `npm run start`
